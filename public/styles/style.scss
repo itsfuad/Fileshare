@@ -1,0 +1,83 @@
+@use "common.css";
+
+:root{
+    --percent: 0%;
+}
+
+.progress{
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+}
+
+.bar{
+    height: 20px;
+    width: 100%;
+    background: #83b1d8;
+    position: relative;
+    &::before{
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: var(--percent);
+        background: #ddedfc;
+        z-index: 2;
+    }
+}
+
+
+input[type=file]{
+    padding: 0;
+    cursor: pointer;
+}
+
+input[type=file]::file-selector-button {
+    border: 2px solid rgba(255, 255, 255, 0.316);
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: rgba(255, 255, 255, 0.316);
+    transition: 600ms;
+    font-family: 'silk';
+    height: 40px;
+}
+
+input[type=file]::file-selector-button:hover {
+    color: white;
+    background-color: rgb(49, 112, 209);
+    border: 2px solid rgb(49, 112, 209);
+}
+
+.container{
+    &.hide{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+#container2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    &.show{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+#qrcode{
+    img{
+        margin: 15px 0 0 0;
+        border-radius: 4px;
+    }
+}

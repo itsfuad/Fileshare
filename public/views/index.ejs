@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/styles/style.css"></link>
+  
+  <script defer src="/libs/qrcode.js"></script>
+  <script defer src="/scripts/app.js"></script>
+
+  <title>Send Image</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">FIle Sharing Portal</div>
+        <form onsubmit="event.preventDefault();" id="container1">
+            <label for="file">Select file from device</label>
+            <input type="file" id="file" name="file" required/>
+            <input type="submit" id="upload" value="Upload" />
+        </form>
+        <div id="container2">
+            <div class="progress">
+                <div id="percent">0%</div><div class="bar"></div>
+            </div>
+            <div id="qrcode">
+                
+            </div>
+            <div class="link btn" data-link>Copy link</div>
+        </div>
+    </div>
+  <footer>AIUB CSE B19</footer>
+</body>
+</html>
