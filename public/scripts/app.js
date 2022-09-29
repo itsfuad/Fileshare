@@ -10,7 +10,7 @@ const container2 = document.getElementById('container2');
 
 const err = document.querySelector('.err');
 
-uploadBtn.addEventListener('click', () => {
+uploadBtn.addEventListener('click', async () => {
     if (fileSelector.files.length > 0){
 
         if (fileSelector.files[0].size > 15728640){
@@ -31,16 +31,17 @@ uploadBtn.addEventListener('click', () => {
             err.classList.remove('shake');
         }
 
-
         console.log('uploading...');
-
-        resetForm();
-
+        
         const file = fileSelector.files[0];
         const formData = new FormData();
-
+    
         hideElem(container1);
+        console.log("container1 hidden");
         showElem(container2);
+        console.log("container2 shown");
+        showElem(progressContainer);
+        console.log("progress shown");
 
         formData.append('file', file);
         //upload image via xhr request
@@ -65,21 +66,25 @@ uploadBtn.addEventListener('click', () => {
                 const file = res.file;
                 const size = res.metadata.filesize;
                 //do stuff
-                console.log(`/download/${file}/${size}`);
+                //console.log(`/download/${file}/${size}`);
                 generateQRcode(`${location.origin}/download/${file}/${size}`);
                 document.getElementById('copyLink').dataset.link = `${location.origin}/download/${file}/${size}`;
 
                 hideElem(progressContainer);
+                console.log("progress hidden");
                 showElem(output);
+                console.log("output shown");
             }
             else{
                 //error
                 console.log('Error');
                 popupMessage('Error Occured!');
                 resetForm();
+                console.log("reset form");
             }
         }
         xhr.send(formData);
+
     }
 })
 
@@ -104,8 +109,8 @@ function generateQRcode(data){
     }
     let qrcode = new QRCode(document.getElementById("qrcode"), {
         text: data,
-        width: 128,
-        height: 128,
+        width: 200,
+        height: 200,
         colorDark : "#000000",
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
@@ -127,6 +132,7 @@ function resetForm(){
     hideElem(container2);
     hideElem(output);
     showElem(progressContainer);
+    container1.reset();
 }
 
 
