@@ -34,13 +34,13 @@ uploadBtn.addEventListener('click', () => {
 
         console.log('uploading...');
 
-        showElem(container1);
-        hideElem(container2);
-        hideElem(output);
-        showElem(progressContainer);
+        resetForm();
 
         const file = fileSelector.files[0];
         const formData = new FormData();
+
+        hideElem(container1);
+        showElem(container2);
 
         formData.append('file', file);
         //upload image via xhr request
@@ -56,8 +56,6 @@ uploadBtn.addEventListener('click', () => {
                 progressDisplay.textContent = `${progress}%`;
                 document.querySelector(':root').style.setProperty('--percent', `${progress}%`);
             
-                hideElem(container1);
-                showElem(container2); 
             }
         };
 
@@ -78,10 +76,7 @@ uploadBtn.addEventListener('click', () => {
                 //error
                 console.log('Error');
                 popupMessage('Error Occured!');
-                showElem(container1);
-                hideElem(container2);
-                hideElem(output);
-                showElem(progressContainer);
+                resetForm();
             }
         }
         xhr.send(formData);
@@ -92,14 +87,14 @@ function showElem(elem){
     elem.style.display = 'flex';
     setTimeout(() => {
         elem.classList.add('active');
-    }, 40);
+    }, 100);
 }
 
 function hideElem(elem){
     elem.classList.remove('active');
     setTimeout(() => {
         elem.style.display = 'none';
-    }, 40);
+    }, 100);
 }
 
 function generateQRcode(data){
@@ -124,11 +119,15 @@ link.addEventListener('click', () => {
 });
 
 document.getElementById('reupload').addEventListener("click", () => {
+    resetForm();
+});
+
+function resetForm(){
     showElem(container1);
     hideElem(container2);
     hideElem(output);
     showElem(progressContainer);
-});
+}
 
 
 function copyText(text){
