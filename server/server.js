@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 app.post('/portal', (req, res) => {
     const regex = /22-([\d]{5})-3/g;
     const uid = req.body.studentID;
-    console.log(uid);
+    //console.log(uid);
     if (regex.test(uid)){
         res.render('index');
     }else{

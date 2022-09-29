@@ -4,31 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/styles/style.css"></link>
+  <link rel="stylesheet" href="/styles/style.min.css"></link>
   
   <script defer src="/libs/qrcode.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/app.min.js"></script>
 
   <title>Send Image</title>
 </head>
 <body>
     <div class="container">
         <div class="title">FIle Sharing Portal</div>
-        <form onsubmit="event.preventDefault();" id="container1">
+        <form onsubmit="event.preventDefault();" id="container1" class="active">
             <label for="file">Select file from device</label>
+            <div class="err"></div>
             <input type="file" id="file" name="file" required/>
             <input type="submit" id="upload" value="Upload" />
         </form>
         <div id="container2">
-            <div class="progress">
+            <div class="progress active">
                 <div id="percent">0%</div><div class="bar"></div>
             </div>
-            <div id="qrcode">
-                
+            <div class="out">
+                <label for="qrcode">Scan this QR code</label>
+                <div id="qrcode"></div>
+                <div id="copyLink" class="link btn" data-link>Copy link</div>
+                <div class="btn" id="reupload">Upload more files</div>
             </div>
-            <div class="link btn" data-link>Copy link</div>
         </div>
     </div>
-  <footer>AIUB CSE B19</footer>
+    <div class="popup-message"></div>
+    <footer>AIUB CSE B19</footer>
 </body>
 </html>

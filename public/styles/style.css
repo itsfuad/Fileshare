@@ -3,8 +3,8 @@
   src: url("WLDotMatrixGlitchMono-Regular.woff2");
 }
 @font-face {
-  font-family: Vermin;
-  src: url("VerminVibesV-Zlg3.woff2");
+  font-family: now;
+  src: url("Now-web.woff2");
 }
 @font-face {
   font-family: silk;
@@ -17,7 +17,7 @@
 }
 
 body {
-  font-family: "silk";
+  font-family: "now";
   color: rgb(221, 237, 252);
   display: flex;
   flex-direction: column;
@@ -30,13 +30,13 @@ body {
 
 .title {
   font-size: 1.4rem;
-  font-family: "silk";
+  font-family: "now";
   margin-bottom: 30px;
 }
 
 .title2 {
   font-size: 1.2rem;
-  font-family: "silk";
+  font-family: "now";
 }
 
 .err {
@@ -87,26 +87,26 @@ input {
   padding: 5px;
   text-align: center;
   color: white;
-  font-family: "silk";
+  font-family: "now";
   height: 40px;
 }
 
 input::-moz-placeholder {
   color: rgba(0, 0, 0, 0.219);
   text-align: center;
-  font-family: "silk";
+  font-family: "now";
 }
 
 input:-ms-input-placeholder {
   color: rgba(0, 0, 0, 0.219);
   text-align: center;
-  font-family: "silk";
+  font-family: "now";
 }
 
 input::placeholder {
   color: rgba(0, 0, 0, 0.219);
   text-align: center;
-  font-family: "silk";
+  font-family: "now";
 }
 
 input[type=submit], a, .btn {
@@ -115,7 +115,7 @@ input[type=submit], a, .btn {
   background: rgb(49, 112, 209);
   transition: 200ms;
   margin: 15px 0 0;
-  font-family: "silk";
+  font-family: "now";
 }
 
 input[type=submit]:hover, a:hover, .btn:hover {
@@ -219,7 +219,7 @@ footer {
   width: 100%;
   padding: 0 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -253,7 +253,7 @@ input[type=file]::-webkit-file-upload-button {
   background-color: rgba(255, 255, 255, 0.316);
   -webkit-transition: 600ms;
   transition: 600ms;
-  font-family: "silk";
+  font-family: "now";
   height: 40px;
 }
 
@@ -263,7 +263,7 @@ input[type=file]::file-selector-button {
   border-radius: 0.2em;
   background-color: rgba(255, 255, 255, 0.316);
   transition: 600ms;
-  font-family: "silk";
+  font-family: "now";
   height: 40px;
 }
 
@@ -279,27 +279,81 @@ input[type=file]::file-selector-button:hover {
   border: 2px solid rgb(49, 112, 209);
 }
 
-.container.hide {
-  opacity: 0;
-  visibility: hidden;
+#container1 {
+  display: none;
+  transform: scale(0);
+  transition: 200ms;
+}
+#container1.active {
+  display: flex;
+  transform: scale(1);
 }
 
 #container2 {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  display: none;
-  opacity: 0;
-  visibility: hidden;
+  transform: scale(0);
+  transition: 200ms;
 }
-#container2.show {
-  opacity: 1;
-  visibility: visible;
+#container2.active {
+  display: flex;
+  transform: scale(1);
+}
+
+.progress {
+  display: none;
+  transform: scale(0);
+  transition: 200ms;
+}
+.progress.active {
+  display: flex;
+  transform: scale(1);
+}
+
+.out {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  transition: 200ms;
+}
+.out.active {
+  display: flex;
+  transform: scale(1);
 }
 
 #qrcode img {
   margin: 15px 0 0 0;
   border-radius: 4px;
+}
+
+.popup-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.7333333333);
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 0.6rem;
+  transform: translateX(-50%);
+  z-index: 100;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: 100ms ease-in-out;
+}
+.popup-message.active {
+  visibility: visible;
+  opacity: 1;
 }/*# sourceMappingURL=style.css.map */

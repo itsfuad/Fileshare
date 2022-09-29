@@ -3,11 +3,41 @@ console.log('app.js loaded');
 const uploadBtn = document.getElementById('upload');
 const fileSelector = document.getElementById('file');
 const progressDisplay = document.getElementById('percent');
+const progressContainer = document.querySelector('.progress');
+const output = document.querySelector('.out');
+const container1 = document.getElementById('container1');
+const container2 = document.getElementById('container2');
+
+const err = document.querySelector('.err');
 
 uploadBtn.addEventListener('click', () => {
     if (fileSelector.files.length > 0){
+
+        if (fileSelector.files[0].size > 15728640){
+            console.log("File must be within 15 mb");
+            popupMessage('File must be within 15 mb');
+            err.textContent = "";
+            err.classList.remove('shake');
+
+            err.textContent = "*File must be within 15 mb*";
+            err.classList.add('shake');
+            setTimeout(()=>{
+                err.classList.remove('shake');
+            }, 1000);
+            return;
+        }else{
+            console.log("Ready to upload");
+            err.textContent = "";
+            err.classList.remove('shake');
+        }
+
+
         console.log('uploading...');
 
+        showElem(container1);
+        hideElem(container2);
+        hideElem(output);
+        showElem(progressContainer);
 
         const file = fileSelector.files[0];
         const formData = new FormData();
@@ -19,36 +49,64 @@ uploadBtn.addEventListener('click', () => {
         xhr.open('POST', `${location.origin}/api/files`, true);
         xhr.upload.onprogress = function(e) {
             if (e.lengthComputable) {
+                //document.getElementById('container1').style.display = 'none';
+
                 //progress
-                progress = (e.loaded / e.total) * 100;
+                let progress = Math.floor((e.loaded / e.total) * 100);
                 progressDisplay.textContent = `${progress}%`;
                 document.querySelector(':root').style.setProperty('--percent', `${progress}%`);
+            
+                hideElem(container1);
+                showElem(container2); 
             }
         };
 
         xhr.onload = function(e) {
             if (this.status == 200) {                
-                const file = JSON.parse(e.target.response).file;
+                const res = JSON.parse(e.target.response);
+                const file = res.file;
+                const size = res.metadata.filesize;
                 //do stuff
-                console.log(`/download/${file}`);
-                document.getElementById('container1').style.display = 'none';
-                document.getElementById('container1').classList.add('hide');
+                console.log(`/download/${file}/${size}`);
+                generateQRcode(`${location.origin}/download/${file}/${size}`);
+                document.getElementById('copyLink').dataset.link = `${location.origin}/download/${file}/${size}`;
 
-                document.getElementById('container2').style.display = 'flex';
-                document.getElementById('container2').classList.add('show');
-                generateQRcode(`${location.origin}${file}`);
+                hideElem(progressContainer);
+                showElem(output);
             }
             else{
                 //error
                 console.log('Error');
+                popupMessage('Error Occured!');
+                showElem(container1);
+                hideElem(container2);
+                hideElem(output);
+                showElem(progressContainer);
             }
         }
         xhr.send(formData);
     }
 })
 
+function showElem(elem){
+    elem.style.display = 'flex';
+    setTimeout(() => {
+        elem.classList.add('active');
+    }, 40);
+}
+
+function hideElem(elem){
+    elem.classList.remove('active');
+    setTimeout(() => {
+        elem.style.display = 'none';
+    }, 40);
+}
+
 function generateQRcode(data){
     console.log(`Making qr code with: ${data}`);
+    while (document.getElementById("qrcode").firstChild){
+        document.getElementById("qrcode").removeChild(document.getElementById("qrcode").firstChild);
+    }
     let qrcode = new QRCode(document.getElementById("qrcode"), {
         text: data,
         width: 128,
@@ -58,4 +116,40 @@ function generateQRcode(data){
         correctLevel : QRCode.CorrectLevel.H
     });
     return qrcode;
+}
+
+const link = document.getElementById('copyLink');
+link.addEventListener('click', () => {
+    copyText(link.dataset.link);
+});
+
+document.getElementById('reupload').addEventListener("click", () => {
+    showElem(container1);
+    hideElem(container2);
+    hideElem(output);
+    showElem(progressContainer);
+});
+
+
+function copyText(text){
+    if (text != null){
+        if (!navigator.clipboard){
+            popupMessage(`This browser does't support clipboard access`);
+            return;
+        }
+        navigator.clipboard.writeText(text);
+        console.log(text);
+        popupMessage(`Copied to clipboard`);
+    }
+}
+
+function popupMessage(text){
+    //$('.popup-message').text(text);
+    document.querySelector('.popup-message').textContent = text;
+    //$('.popup-message').fadeIn(500);
+    document.querySelector('.popup-message').classList.add('active');
+    setTimeout(function () {
+        //$('.popup-message').fadeOut(500);
+        document.querySelector('.popup-message').classList.remove('active');
+    }, 1000);
 }

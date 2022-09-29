@@ -3,8 +3,8 @@
   src: url("WLDotMatrixGlitchMono-Regular.woff2");
 }
 @font-face {
-  font-family: Vermin;
-  src: url("VerminVibesV-Zlg3.woff2");
+  font-family: now;
+  src: url("Now-web.woff2");
 }
 @font-face {
   font-family: silk;
@@ -17,7 +17,7 @@
 }
 
 body {
-  font-family: "silk";
+  font-family: "now";
   color: rgb(221, 237, 252);
   display: flex;
   flex-direction: column;
@@ -30,13 +30,13 @@ body {
 
 .title {
   font-size: 1.4rem;
-  font-family: "silk";
+  font-family: "now";
   margin-bottom: 30px;
 }
 
 .title2 {
   font-size: 1.2rem;
-  font-family: "silk";
+  font-family: "now";
 }
 
 .err {
@@ -86,23 +86,23 @@ input {
   padding: 5px;
   text-align: center;
   color: white;
-  font-family: "silk";
+  font-family: "now";
   height: 40px;
 }
 input::-moz-placeholder {
   color: rgba(0, 0, 0, 0.219);
   text-align: center;
-  font-family: "silk";
+  font-family: "now";
 }
 input:-ms-input-placeholder {
   color: rgba(0, 0, 0, 0.219);
   text-align: center;
-  font-family: "silk";
+  font-family: "now";
 }
 input::placeholder {
   color: rgba(0, 0, 0, 0.219);
   text-align: center;
-  font-family: "silk";
+  font-family: "now";
 }
 
 input[type=submit], a, .btn {
@@ -111,7 +111,7 @@ input[type=submit], a, .btn {
   background: rgb(49, 112, 209);
   transition: 200ms;
   margin: 15px 0 0;
-  font-family: "silk";
+  font-family: "now";
 }
 input[type=submit]:hover, a:hover, .btn:hover {
   cursor: pointer;

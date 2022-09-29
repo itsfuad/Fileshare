@@ -4,6 +4,15 @@ const { access } = require('fs/promises');
 const uuid = require('uuid').v4;
 const { store } = require('./cred');
 
+function makeId(length = 10){
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for (let i = 0; i < length; i++){
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
 let storage = multer.diskStorage({
     destination: (_, file, cb) => cb(null, 'uploads/'),
@@ -11,7 +20,7 @@ let storage = multer.diskStorage({
         if (file.size >= 15000000){
             cb(new Error("File size more than 15mb"), filename);
         }else{
-            const filename = `aiub-${uuid()}-${file.originalname}`;
+            const filename = `aiub-${makeId(6)}.${file.originalname.split('.').pop()}`;
             store(filename, { filename: filename, createdAt: Date.now() });
             cb(null, filename);
         }

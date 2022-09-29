@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/common.css"></link>
+    <link rel="stylesheet" href="/styles/common.min.css"></link>
     <title>Download</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             <div class="filename">Filename: <span class="name"><%- filename %></span></div>
             <div class="filesize">Size <span class="size"><%- filesize %></span></div>
         </div>
-        <a class="download" href="<%- link %>">Download</a>
+        <a class="download" download href="<%- link %>">Download</a>
     </div>
     <footer>AIUB CSE B19</footer>
 </body>
