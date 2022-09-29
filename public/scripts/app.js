@@ -7,6 +7,7 @@ const progressContainer = document.querySelector('.progress');
 const output = document.querySelector('.out');
 const container1 = document.getElementById('container1');
 const container2 = document.getElementById('container2');
+const title = document.getElementById('title');
 
 const err = document.querySelector('.err');
 
@@ -32,6 +33,7 @@ uploadBtn.addEventListener('click', async () => {
         }
 
         console.log('uploading...');
+        title.textContent = "Uploading...";
         
         const file = fileSelector.files[0];
         const formData = new FormData();
@@ -74,6 +76,7 @@ uploadBtn.addEventListener('click', async () => {
                 console.log("progress hidden");
                 showElem(output);
                 console.log("output shown");
+                title.textContent = "File uploaded";
             }
             else{
                 //error
@@ -128,13 +131,13 @@ document.getElementById('reupload').addEventListener("click", () => {
 });
 
 function resetForm(){
+    title.textContent = "File Sharing Portal";
     showElem(container1);
     hideElem(container2);
     hideElem(output);
     showElem(progressContainer);
     container1.reset();
 }
-
 
 function copyText(text){
     if (text != null){

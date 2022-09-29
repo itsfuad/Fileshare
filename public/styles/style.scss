@@ -43,7 +43,7 @@ input[type=file]::file-selector-button {
     border-radius: .2em;
     background-color: rgba(255, 255, 255, 0.316);
     transition: 600ms;
-    font-family: 'now';
+    font-family: 'vt';
     height: 40px;
 }
 
@@ -62,7 +62,6 @@ input[type=file]::file-selector-button:hover {
         transform: scale(1);
     }
 }
-
 
 #container2{
     display: none;
@@ -110,6 +109,7 @@ input[type=file]::file-selector-button:hover {
         outline: 2px solid white;
     }
 }
+
 
 .popup-message{
     display: flex;
