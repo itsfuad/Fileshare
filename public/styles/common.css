@@ -83,17 +83,17 @@ input {
   height: 40px;
 }
 input::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.219);
+  color: rgba(255, 255, 255, 0.514);
   text-align: center;
   font-family: "now";
 }
 input:-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.219);
+  color: rgba(255, 255, 255, 0.514);
   text-align: center;
   font-family: "now";
 }
 input::placeholder {
-  color: rgba(0, 0, 0, 0.219);
+  color: rgba(255, 255, 255, 0.514);
   text-align: center;
   font-family: "now";
 }
