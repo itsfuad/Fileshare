@@ -1,14 +1,6 @@
 @font-face {
-  font-family: matrix;
-  src: url("WLDotMatrixGlitchMono-Regular.woff2");
-}
-@font-face {
   font-family: now;
-  src: url("Now-web.woff2");
-}
-@font-face {
-  font-family: silk;
-  src: url("Silkscreen-Regular.woff2");
+  src: url("now-web.woff2");
 }
 * {
   margin: 0;
