@@ -1,31 +1,19 @@
 const path = require('path');
 const http = require('http');
 const compression = require('compression');
-const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const express = require('express');
 const { clean } = require('./cleaner');
+const { fileStore } = require('./cred');
 
 const app = express();
-
 
 const server = http.createServer(app);
 
 const publicPath = path.join(__dirname, '../public');
 const PORT = process.env.PORT || 3000;
 
-const devMode = false;
-
 clean();
-
-const apiRequestLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minute
-    max: 100, // limit each IP to 100 requests per windowMs
-    message: "Too many requests. Temporarily blocked from PokeTab server. Please try again later",
-    standardHeaders: false, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false // Disable the `X-RateLimit-*` headers
-});
-
 
 app.disable('x-powered-by');
 
@@ -57,21 +45,25 @@ app.post('/portal', (req, res) => {
     if (regex.test(uid)){
         res.render('index', {title: "Upload"});
     }else{
-        res.statusCode(403).send("Access denied!");
+        res.render('errorRes', {title: "Access Denied", errorCode: "401", errorMessage: "Unauthorised", buttonText: "Suicide"});
     }
 });
 
 app.get('/download/:id/:size', (req, res) => {
     const filename = req.params.id;
-    let size = req.params.size;
-    if (size < 1024){
-        size = size + 'b';
-    }else if (size < 1048576){
-        size = (size/1024).toFixed(1) + 'kb';
+    if (fileStore.has(filename)){
+        let size = req.params.size;
+        if (size < 1024){
+            size = size + 'b';
+        }else if (size < 1048576){
+            size = (size/1024).toFixed(1) + 'kb';
+        }else{
+            size = (size/1048576).toFixed(1) + 'mb';
+        }
+        res.render('download', {link: `/api/download/${filename}`, filename: filename, filesize: size, title: "Download"});
     }else{
-        size = (size/1048576).toFixed(1) + 'mb';
+        res.render('errorRes', {title: "Empty", errorCode: "404", errorMessage: "Not found", buttonText: "Home"});
     }
-    res.render('download', {link: `/api/download/${filename}`, filename: filename, filesize: size, title: "Download"});
 });
 
 app.get('*', (_, res) => {
@@ -79,6 +71,6 @@ app.get('*', (_, res) => {
 });
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })

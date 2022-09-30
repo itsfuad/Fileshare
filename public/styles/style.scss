@@ -38,19 +38,21 @@ input[type=file]{
 }
 
 input[type=file]::file-selector-button {
-    border: 2px solid rgba(255, 255, 255, 0.316);
+    border: 2px solid #4598ff;
     padding: .2em .4em;
     border-radius: .2em;
-    background-color: rgba(255, 255, 255, 0.316);
+    background-color: #4598ff;
+    color: white;
     transition: 600ms;
     font-family: 'vt';
     height: 40px;
 }
 
 input[type=file]::file-selector-button:hover {
+    cursor: pointer;
     color: white;
-    background-color: rgb(49, 112, 209);
-    border: 2px solid rgb(49, 112, 209);
+    background-color: #4598ff;
+    border: 2px solid #4598ff;
 }
 
 #container1{

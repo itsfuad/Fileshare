@@ -7,6 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    caret-color: #4598ff;
 }
 
 body{
@@ -17,7 +18,7 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(-212deg, rgb(48 133 133), rgb(24 101 219));
+    background: #111d2a;
     overflow: hidden;
 }
 
@@ -33,7 +34,7 @@ body{
 }
 
 .err{
-    color: #d90000;
+    color: orangered;
     font-size: 0.7rem;
     &.shake{
         animation: shake 300ms infinite;
@@ -47,7 +48,7 @@ body{
     align-items: center;
     width: 400px;
     max-width: 90vw;
-    background: #ffffff2e;
+    background: #26313d;
     border-radius: 10px;
     padding: 20px 15px;
     opacity: 1;
@@ -72,7 +73,7 @@ form{
 }
 
 input{
-    background: rgba(255, 255, 255, 0.316);
+    background: #333d48;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -82,7 +83,7 @@ input{
     font-family: 'vt';
     height: 40px;
     &::placeholder{
-        color: rgba(255, 255, 255, 0.514);
+        color: #bababa;
         text-align: center;
         font-family: 'vt';
     }
@@ -92,13 +93,13 @@ input{
 input[type=submit], a, .btn{
     width: 100%;
     color: rgb(221, 237, 252);
-    background: rgb(49, 112, 209);
+    background: #4598ff;
     transition: 200ms;
     margin: 15px 0 0;
     font-family: 'vt';
     &:hover{
         cursor: pointer;
-        background-color: rgb(30, 83, 163);
+        background-color: #3781db;
     }
 }
 
