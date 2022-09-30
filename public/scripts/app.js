@@ -232,6 +232,7 @@ window.addEventListener('dragover', (evt) => {
     //console.log(evt.target.classList);
     fileDropZone.classList.add('active');
     fileDropZone.style.outline = '2px dashed #f1f1f17d';
+    fileDropZone.style.background = '#00000052';
 
     if (insideTarget){
         //console.log("inside target");
@@ -241,17 +242,20 @@ window.addEventListener('dragover', (evt) => {
         }
     }else{
         fileDropZone.style.outline = '2px dashed #f1f1f17d';
+        document.querySelector('.chooser').classList.remove('focus');
         if (timeoutObj) {
             clearTimeout(timeoutObj);
         }
     }
     timeoutObj = setTimeout(() => {
         fileDropZone.classList.remove('active');
+        fileDropZone.style.background = 'transparent';
         if (fileSelector.files.length > 0){
         // console.log('removing dash');
             fileDropZone.style.outline = '0px';
         }else{
             fileDropZone.style.outline = '2px dashed #f1f1f17d';
+            document.querySelector('.chooser').classList.remove('focus');
         }
     }, 100);
 });
