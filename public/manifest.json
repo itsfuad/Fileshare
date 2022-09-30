@@ -3,8 +3,8 @@
   "short_name": "FileShare",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3170d1",
+  "background_color": "#111d2a",
+  "theme_color": "#111d2a",
   "scope": "/",
   "description": "Temporary file sharing application",
   "icons": [
