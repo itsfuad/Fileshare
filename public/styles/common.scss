@@ -120,6 +120,24 @@ footer{
     animation: blinking 500ms infinite;
 }
 
+.offline{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0; 
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: -20px; 
+    font-size: 1rem;
+    transition: 300ms ease-in-out;
+    color: white;
+    &.active{
+        visibility: visible;
+        opacity: 1;
+        top: 0;
+    }
+}
+
 
 @keyframes shake {
     0% { transform: translateX(1px);}

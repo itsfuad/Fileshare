@@ -10,7 +10,7 @@
     "test-watch": "nodemon --exec 'npm test'"
   },
   "keywords": [],
-  "author": "",
+  "author": "Fuad Hasan",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20"

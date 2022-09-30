@@ -47,7 +47,7 @@ app.use('/api/files', require('./router'));
 app.use('/api/download', require('./router'));
 
 app.get('/', (req, res) => {
-    res.render('login', {action: "/portal"});
+    res.render('login', {action: "/portal", title: "Login"});
 })
 
 app.post('/portal', (req, res) => {
@@ -55,7 +55,7 @@ app.post('/portal', (req, res) => {
     const uid = req.body.studentID;
     //console.log(uid);
     if (regex.test(uid)){
-        res.render('index');
+        res.render('index', {title: "Upload"});
     }else{
         res.statusCode(403).send("Access denied!");
     }
@@ -71,7 +71,7 @@ app.get('/download/:id/:size', (req, res) => {
     }else{
         size = (size/1048576).toFixed(1) + 'mb';
     }
-    res.render('download', {link: `/api/download/${filename}`, filename: filename, filesize: size});
+    res.render('download', {link: `/api/download/${filename}`, filename: filename, filesize: size, title: "Download"});
 });
 
 app.get('*', (_, res) => {

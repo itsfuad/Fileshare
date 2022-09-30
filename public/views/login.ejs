@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('layout/header.ejs') %>
     <link rel="stylesheet" href="/styles/common.min.css"></link>
-    <title>Login</title>
 </head>
 <body>
+    <div class="offline"></div>
     <div class="container">
         <div class="title">FIle Sharing Portal</div>
         <form action="<%- action %> " method="post" onsubmit="return validate();" >

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <%- include('layout/header.ejs') %>
+
   <link rel="stylesheet" href="/styles/style.min.css"></link>
-  
+
   <script defer src="/libs/qrcode.js"></script>
   <script defer src="/scripts/app.min.js?v=2"></script>
 
-  <title>Send Image</title>
 </head>
 <body>
+    <div class="offline"></div>
     <div class="container">
         <div class="title" id="title">FIle Sharing Portal</div>
         <form onsubmit="event.preventDefault();" id="container1" class="active">

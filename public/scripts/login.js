@@ -14,6 +14,15 @@ function errCheck(id){
         }, 1000);
         return false;
     }
+    if(!navigator.onLine){
+        console.log("No internet");
+        err.textContent = "*No internet*";
+        err.classList.add('shake');
+        setTimeout(()=>{
+            err.classList.remove('shake');
+        }, 1000);
+        return false;
+    }
     if (regex.test(id)){
         console.log("Access Granted");
         err.textContent = "";
@@ -30,6 +39,16 @@ function errCheck(id){
 }
 
 function validate(){
-    console.log(studentID.value);
+    //console.log(studentID.value);
     return errCheck(studentID.value);
+}
+
+
+if ('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+        .register('sw-fileshare.js?v=2')
+        .then(reg => console.log("Service Worker Registered"))
+        .catch(err => console.log(`Service Worker: Error ${err}`));
+    });
 }

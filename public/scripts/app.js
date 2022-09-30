@@ -26,6 +26,18 @@ uploadBtn.addEventListener('click', async () => {
                 err.classList.remove('shake');
             }, 1000);
             return;
+        }else if(!navigator.onLine){
+            console.log("No internet");
+            popupMessage('No internet');
+            err.textContent = "";
+            err.classList.remove('shake');
+
+            err.textContent = "*No internet*";
+            err.classList.add('shake');
+            setTimeout(()=>{
+                err.classList.remove('shake');
+            }, 1000);
+            return;
         }else{
             console.log("Ready to upload");
             err.textContent = "";
