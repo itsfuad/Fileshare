@@ -14,10 +14,21 @@
     <div class="offline"></div>
     <div class="container">
         <div class="title" id="title">FIle Sharing Portal</div>
-        <form onsubmit="event.preventDefault();" id="container1" class="active">
-            <label for="file">Select file from device</label>
+        <form id="container1" class="active">
+            <label for="file" id="drop_zone" class="dropZone">
+                <div class="chooser">
+                    <p>Choose file from device</p>
+                    <p>Or</p>
+                    <p>Drag and drop here</p>
+                </div>
+                <div class="filemeta hidden">
+                    <div class="icon"><img src="/images/file-small.png" alt="Icon" height="80px" width="80px"></div>
+                    <div class="filename">Filename: <span class="name"> filename</span></div>
+                    <div class="filesize">Size <span class="size"> filesize </span></div>
+                </div>
+            </label>
             <div class="err"></div>
-            <input type="file" id="file" name="file" required/>
+            <input style="display: none;" type="file" id="file" name="file"/>
             <input type="submit" id="upload" value="Upload" />
         </form>
         <div id="container2">

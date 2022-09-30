@@ -19,14 +19,14 @@
 .bar{
     height: 20px;
     width: 100%;
-    background: #83b1d8;
+    background: #394a5c;
     position: relative;
     &::before{
         content: " ";
         position: absolute;
         height: 100%;
         width: var(--percent);
-        background: #ddedfc;
+        background: #4598ff;
         z-index: 2;
     }
 }
@@ -135,5 +135,44 @@ input[type=file]::file-selector-button:hover {
     &.active{
         visibility: visible;
         opacity: 1;
+    }
+}
+
+#drop_zone {
+    width: 100%;
+    height: 150px;
+    color: #f1f1f17d;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    outline: 2px dashed #f1f1f17d;
+    .chooser{
+        opacity: 1;
+        visibility: visible;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        transition: 100ms;
+        &.hidden{
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    &.active{
+        outline: 2px dashed #4598ff;
+    }
+    .filemeta{
+        color: rgb(221, 237, 252);
+        opacity: 1;
+        visibility: visible;
+        transition: 100ms;
+        &.hidden{
+            opacity: 0;
+            visibility: hidden;
+        }
     }
 }
