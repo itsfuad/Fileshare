@@ -1,4 +1,4 @@
-const cacheName = 'fileshare-v2';
+const cacheName = 'fileshare-v3';
 //Call Install Event
 self.addEventListener('install', (e) => {
 	console.log('Service Worker: Installed');
@@ -23,10 +23,12 @@ self.addEventListener('activate', (e) => {
 	);
 });
 
-
 //Call fetch event
 self.addEventListener('fetch', e=> {
 	console.log('Service Worker: Fetching');
+	if (e.request.method === 'POST'){
+		return;
+	}
 	e.respondWith(
 		fetch(e.request)
 		.then(res => {

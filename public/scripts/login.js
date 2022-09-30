@@ -42,13 +42,3 @@ function validate(){
     //console.log(studentID.value);
     return errCheck(studentID.value);
 }
-
-
-if ('serviceWorker' in navigator){
-    window.addEventListener('load', () => {
-        navigator.serviceWorker
-        .register('sw-fileshare.js?v=2')
-        .then(reg => console.log("Service Worker Registered"))
-        .catch(err => console.log(`Service Worker: Error ${err}`));
-    });
-}

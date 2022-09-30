@@ -63,10 +63,12 @@ uploadBtn.addEventListener('click', async () => {
         //send file via xhr post request
         xhr.open('POST', `${location.origin}/api/files`, true);
         xhr.upload.onprogress = function(e) {
+            console.log("inside upload");
             if (e.lengthComputable) {
                 //document.getElementById('container1').style.display = 'none';
 
                 //progress
+                console.log(e.loaded);
                 let progress = Math.floor((e.loaded / e.total) * 100);
                 progressDisplay.textContent = `${progress}%`;
                 document.querySelector(':root').style.setProperty('--percent', `${progress}%`);
@@ -98,6 +100,7 @@ uploadBtn.addEventListener('click', async () => {
                 console.log("reset form");
             }
         }
+
         xhr.send(formData);
 
     }
