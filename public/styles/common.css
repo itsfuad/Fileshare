@@ -73,7 +73,7 @@ form {
   width: 100%;
 }
 
-input {
+input, #submit {
   background: #333d48;
   border: none;
   outline: none;
@@ -83,24 +83,25 @@ input {
   color: white;
   font-family: "vt";
   height: 40px;
+  font-size: 1rem;
 }
-input::-moz-placeholder {
+input::-moz-placeholder, #submit::-moz-placeholder {
   color: #bababa;
   text-align: center;
   font-family: "vt";
 }
-input:-ms-input-placeholder {
+input:-ms-input-placeholder, #submit:-ms-input-placeholder {
   color: #bababa;
   text-align: center;
   font-family: "vt";
 }
-input::placeholder {
+input::placeholder, #submit::placeholder {
   color: #bababa;
   text-align: center;
   font-family: "vt";
 }
 
-input[type=submit], a, .btn {
+input[type=submit], #submit, a, .btn {
   width: 100%;
   color: rgb(221, 237, 252);
   background: #4598ff;
@@ -108,9 +109,21 @@ input[type=submit], a, .btn {
   margin: 15px 0 0;
   font-family: "vt";
 }
-input[type=submit]:hover, a:hover, .btn:hover {
+input[type=submit]:hover, #submit:hover, a:hover, .btn:hover {
   cursor: pointer;
   background-color: #3781db;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 a, .btn {

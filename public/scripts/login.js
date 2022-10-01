@@ -3,7 +3,7 @@ console.log('loaded js');
 const studentID = document.getElementById('sId');
 const err = document.querySelector('.err');
 
-const regex = /22-([\d]{5})-3/g;
+const regex = /22([\d]{5})3/g;
 
 function errCheck(id){
     if (id == ""){
@@ -27,6 +27,7 @@ function errCheck(id){
         console.log("Access Granted");
         err.textContent = "";
         err.classList.remove('shake');
+        document.getElementById('submit').textContent = `Please Wait...`;
         return true;
     }else{
         err.textContent = "*Invalid Or Unauthorised!*";

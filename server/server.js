@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/portal', (req, res) => {
-    const regex = /22-([\d]{5})-3/g;
+    const regex = /22([\d]{5})3/g;
     const uid = req.body.studentID;
     //console.log(uid);
     if (regex.test(uid)){
@@ -49,10 +49,10 @@ app.post('/portal', (req, res) => {
     }
 });
 
-app.get('/download/:id/:size', (req, res) => {
-    const filename = req.params.id;
-    if (fileStore.has(filename)){
-        let size = req.params.size;
+app.get('/download/:id', (req, res) => {
+    if (fileStore.has(req.params.id)){
+        const filename = fileStore.get(req.params.id).filename;
+        let size = fileStore.get(req.params.id).fileSize;
         if (size < 1024){
             size = size + 'b';
         }else if (size < 1048576){

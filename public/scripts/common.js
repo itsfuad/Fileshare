@@ -1,5 +1,14 @@
 console.log("common.js loaded");
 
+const clickSound = new Audio('/audio/click.mp3');
+
+if (!navigator.onLine){
+    console.log('offline'); 
+    document.querySelector('.offline').textContent = 'You are offline!';
+    document.querySelector('.offline').classList.add('active');
+    document.querySelector('.offline').style.background = 'orangered';
+}
+
 window.addEventListener('offline', function(e) { 
     console.log('offline'); 
     document.querySelector('.offline').textContent = 'You are offline!';
@@ -18,6 +27,13 @@ window.addEventListener('online', function() {
     setTimeout(() => {
         document.querySelector('.offline').classList.remove('active');
     }, 1500);
+});
+
+document.querySelectorAll('.clickable').forEach(elem => {
+    elem.addEventListener('click', () => {
+        clickSound.currentTime = 0;
+        clickSound.play();
+    });
 });
 
 if ('serviceWorker' in navigator){

@@ -74,10 +74,9 @@ uploadBtn.addEventListener('click', async (evt) => {
             if (this.status == 200) {                
                 const res = JSON.parse(e.target.response);
                 const file = res.file;
-                const size = res.metadata.filesize;
                 //do stuff
-                generateQRcode(`${location.origin}/download/${file}/${size}`);
-                document.getElementById('copyLink').dataset.link = `${location.origin}/download/${file}/${size}`;
+                generateQRcode(`${location.origin}/download/${file}`);
+                document.getElementById('copyLink').dataset.link = `${location.origin}/download/${file}`;
                 hideElem(progressContainer);
                 showElem(output);
                 title.textContent = "File uploaded";

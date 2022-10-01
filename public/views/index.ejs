@@ -15,7 +15,7 @@
     <div class="container">
         <div class="title" id="title">FIle Sharing Portal</div>
         <form id="container1" class="active">
-            <label for="file" id="drop_zone" class="dropZone">
+            <label for="file" id="drop_zone" class="dropZone clickable">
                 <div class="chooser">
                     <p>Choose file from device</p>
                     <p>Or</p>
@@ -29,7 +29,7 @@
             </label>
             <div class="err"></div>
             <input style="display: none;" type="file" id="file" name="file"/>
-            <input type="submit" id="upload" value="Upload" />
+            <input type="submit" id="upload" class="clickable" value="Upload" />
         </form>
         <div id="container2">
             <div class="progress active">
@@ -38,8 +38,8 @@
             <div class="out">
                 <label for="qrcode">Scan this QR code</label>
                 <div id="qrcode"></div>
-                <div id="copyLink" class="link btn" data-link>Copy link</div>
-                <div class="btn" id="reupload">Upload more files</div>
+                <div id="copyLink" class="link btn clickable" data-link>Copy link</div>
+                <div class="btn clickable" id="reupload">Upload more files</div>
             </div>
         </div>
     </div>

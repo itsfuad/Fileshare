@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const { access } = require('fs/promises');
 const uuid = require('uuid').v4;
-const { store } = require('./cred');
+const { store, fileStore } = require('./cred');
 
 function makeId(length = 10){
     let result = '';
@@ -18,10 +18,11 @@ let storage = multer.diskStorage({
     destination: (_, file, cb) => cb(null, 'uploads/'),
     filename: (req, file, cb) => {
         if (file.size >= 15000000){
-            cb(new Error("File size more than 15mb"), filename);
+            cb(new Error("File size more than 15mb"), "");
         }else{
-            const filename = `aiub-${makeId(6)}.${file.originalname.split('.').pop()}`;
-            store(filename, { filename: filename, createdAt: Date.now() });
+            const fileId = makeId(12);
+            const filename =  `${fileId}.${file.originalname.split('.').pop()}`;
+            store(fileId, { filename: filename, fileSize: undefined, createdAt: Date.now() });
             cb(null, filename);
         }
     },
@@ -42,7 +43,9 @@ router.post('/', async (req, res) => {
             res.send({ error: err.message });
         } else {
             //fileStore[req.file.filename] = {filename: req.file.filename, downloaded: 0, key: req.body.key};
-            res.send({ success: true, file: req.file.filename, metadata: {filename: req.file.filename, filesize: req.file.size } });
+            const fileId = req.file.filename.replace(`.${req.file.filename.split('.').pop()}`, '');
+            fileStore.get(fileId).fileSize = req.file.size;
+            res.send({ success: true, file: fileId});
             console.log('Temporary file stored.');
         }
     });
