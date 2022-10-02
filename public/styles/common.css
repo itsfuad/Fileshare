@@ -9,6 +9,19 @@
   caret-color: #4598ff;
 }
 
+.noSelect {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.noSelect:focus {
+  outline: none !important;
+}
+
 body {
   font-family: "vt";
   color: rgb(221, 237, 252);

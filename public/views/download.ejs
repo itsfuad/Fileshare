@@ -5,16 +5,16 @@
     <link rel="stylesheet" href="/styles/common.min.css"></link>
 </head>
 <body>
-    <div class="offline"></div>
-    <div class="container">
-        <div class="title">FIle Sharing Portal</div>
-        <div class="filemeta">
-            <div class="icon"><img src="/images/file-small.png" alt="Icon" height="80px" width="80px"></div>
-            <div class="filename">Filename: <span class="name"><%- filename %></span></div>
-            <div class="filesize">Size <span class="size"><%- filesize %></span></div>
+    <div class="offline noSelect" ></div>
+    <div class="container noSelect">
+        <div class="title noSelect">FIle Sharing Portal</div>
+        <div class="filemeta noSelect">
+            <div class="icon noSelect"><img src="/images/file-small.png" alt="Icon" height="80px" width="80px"></div>
+            <div class="filename noSelect">Filename: <span class="name"><%- filename %></span></div>
+            <div class="filesize noSelect">Size <span class="size"><%- filesize %></span></div>
         </div>
-        <a class="download clickable" download href="<%- link %>">Download</a>
+        <a class="download noSelect clickable" download href="<%- link %>">Download</a>
     </div>
-    <footer>Fuad Hasan - <a href="https://github.com/itsfuad/aiubfileshare" style="background: none;margin: 0;padding: 0;text-decoration: underline;">Source code</a></footer>
+    <footer class="noSelect">Fuad Hasan - <a href="https://github.com/itsfuad/aiubfileshare" style="background: none;margin: 0;padding: 0;text-decoration: underline;">Source code</a></footer>
 </body>
 </html>

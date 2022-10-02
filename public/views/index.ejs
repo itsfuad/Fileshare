@@ -11,39 +11,39 @@
 
 </head>
 <body>
-    <div class="offline"></div>
-    <div class="container">
+    <div class="offline noSelect"></div>
+    <div class="container noSelect">
         <div class="title" id="title">FIle Sharing Portal</div>
-        <form id="container1" class="active">
-            <label for="file" id="drop_zone" class="dropZone clickable">
-                <div class="chooser">
+        <form id="container1" class="active noSelect">
+            <label for="file" id="drop_zone" class="dropZone noSelect clickable">
+                <div class="chooser noSelect">
                     <p>Choose file from device</p>
                     <p>Or</p>
                     <p>Drag and drop here</p>
                 </div>
-                <div class="filemeta hidden">
-                    <div class="icon"><img src="/images/file-small.png" alt="Icon" height="80px" width="80px"></div>
-                    <div class="filename">Filename: <span class="name"> filename</span></div>
-                    <div class="filesize">Size <span class="size"> filesize </span></div>
+                <div class="filemeta hidden noSelect">
+                    <div class="icon noSelect"><img src="/images/file-small.png" alt="Icon" height="80px" width="80px"></div>
+                    <div class="filename noSelect">Filename: <span class="name"> filename</span></div>
+                    <div class="filesize noSelect">Size <span class="size"> filesize </span></div>
                 </div>
             </label>
-            <div class="err"></div>
-            <input style="display: none;" type="file" id="file" name="file"/>
-            <input type="submit" id="upload" class="clickable" value="Upload" />
+            <div class="err noSelect"></div>
+            <input style="display: none;" class="noSelect" type="file" id="file" name="file"/>
+            <input type="submit" id="upload" class="clickable noSelect" value="Upload" />
         </form>
-        <div id="container2">
-            <div class="progress active">
+        <div id="container2" class="noSelect">
+            <div class="progress noSelect active">
                 <div id="percent">0%</div><div class="bar"></div>
             </div>
-            <div class="out">
+            <div class="out noSelect">
                 <label for="qrcode">Scan this QR code</label>
-                <div id="qrcode"></div>
-                <div id="copyLink" class="link btn clickable" data-link>Copy link</div>
-                <div class="btn clickable" id="reupload">Upload more files</div>
+                <div id="qrcode" class="noSelect"></div>
+                <div id="copyLink" class="link btn noSelect clickable" data-link>Copy link</div>
+                <div class="btn noSelect clickable" id="reupload">Upload more files</div>
             </div>
         </div>
     </div>
-    <div class="popup-message"></div>
-    <footer>Fuad Hasan - <a href="https://github.com/itsfuad/aiubfileshare" style="background: none;margin: 0;padding: 0;text-decoration: underline;">Source code</a></footer>
+    <div class="popup-message noSelect"></div>
+    <footer class="noSelect">Fuad Hasan - <a href="https://github.com/itsfuad/aiubfileshare" style="background: none;margin: 0;padding: 0;text-decoration: underline;">Source code</a></footer>
 </body>
 </html>
