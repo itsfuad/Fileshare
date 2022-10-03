@@ -58,7 +58,7 @@ uploadBtn.addEventListener('click', async (evt) => {
         //upload image via xhr request
         let xhr = new XMLHttpRequest();
         //send file via xhr post request
-        xhr.open('POST', `${location.origin}/api/files`, true);
+        xhr.open('POST', `${location.origin}/api/f`, true);
         xhr.upload.onprogress = function(e) {
             if (e.lengthComputable) {
                 //document.getElementById('container1').style.display = 'none';
@@ -75,8 +75,8 @@ uploadBtn.addEventListener('click', async (evt) => {
                 const res = JSON.parse(e.target.response);
                 const file = res.file;
                 //do stuff
-                generateQRcode(`${location.origin}/download/${file}`);
-                document.getElementById('copyLink').dataset.link = `${location.origin}/download/${file}`;
+                generateQRcode(`${location.origin}/d/${file}`);
+                document.getElementById('copyLink').dataset.link = `${location.origin}/d/${file}`;
                 hideElem(progressContainer);
                 showElem(output);
                 title.textContent = "File uploaded";

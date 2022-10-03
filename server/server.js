@@ -31,14 +31,14 @@ app.use(express.urlencoded({
 }));
 //app.use(apiRequestLimiter);
 
-app.use('/api/files', require('./router'));
-app.use('/api/download', require('./router'));
+app.use('/api/f', require('./router'));
+app.use('/api/d', require('./router'));
 
 app.get('/', (req, res) => {
-    res.render('login', {action: "/portal", title: "Login"});
+    res.render('login', {action: "/p", title: "Login"});
 })
 
-app.post('/portal', (req, res) => {
+app.post('/p', (req, res) => {
     const regex = /22([\d]{5})3/g;
     const uid = req.body.studentID;
     //console.log(uid);
@@ -49,7 +49,7 @@ app.post('/portal', (req, res) => {
     }
 });
 
-app.get('/download/:id', (req, res) => {
+app.get('/d/:id', (req, res) => {
     if (fileStore.has(req.params.id)){
         const filename = fileStore.get(req.params.id).filename;
         let size = fileStore.get(req.params.id).fileSize;
@@ -60,7 +60,7 @@ app.get('/download/:id', (req, res) => {
         }else{
             size = (size/1048576).toFixed(1) + 'mb';
         }
-        res.render('download', {link: `/api/download/${filename}`, filename: filename, filesize: size, title: "Download"});
+        res.render('download', {link: `/api/d/${filename}`, filename: filename, filesize: size, title: "Download"});
     }else{
         res.render('errorRes', {title: "Empty", errorCode: "404", errorMessage: "Not found", buttonText: "Home"});
     }
