@@ -17,7 +17,7 @@ function makeId(length = 10){
 let storage = multer.diskStorage({
     destination: (_, file, cb) => cb(null, 'uploads/'),
     filename: (req, file, cb) => {
-        if (file.size >= 15000000){
+        if (file.size >= 15728640){
             cb(new Error("File size more than 15mb"), "");
         }else{
             const fileId = makeId(12);
@@ -30,7 +30,7 @@ let storage = multer.diskStorage({
 
 let upload = multer({ 
     storage: storage,
-    limits: { fileSize: 15000000 },
+    limits: { fileSize: 15728640 },
 }).single('file'); //name field name
 
 router.post('/', async (req, res) => {
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             console.log('File cannot be stored:', err.message);
-            res.send({ error: err.message });
+            res.send({ success: false, error: err.message });
         } else {
             //fileStore[req.file.filename] = {filename: req.file.filename, downloaded: 0, key: req.body.key};
             const fileId = req.file.filename.replace(`.${req.file.filename.split('.').pop()}`, '');
