@@ -35,19 +35,8 @@ app.use('/api/f', require('./router'));
 app.use('/api/d', require('./router'));
 
 app.get('/', (req, res) => {
-    res.render('login', {action: "/p", title: "Login"});
+    res.render('index', {title: "Upload"});
 })
-
-app.post('/p', (req, res) => {
-    const regex = /22([\d]{5})3/g;
-    const uid = req.body.studentID;
-    //console.log(uid);
-    if (regex.test(uid)){
-        res.render('index', {title: "Upload"});
-    }else{
-        res.render('errorRes', {title: "Access Denied", errorCode: "401", errorMessage: "Unauthorised", buttonText: "Suicide"});
-    }
-});
 
 app.get('/d/:id', (req, res) => {
     if (fileStore.has(req.params.id)){
