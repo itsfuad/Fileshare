@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
 const { access } = require('fs/promises');
-const uuid = require('uuid').v4;
 const { store, fileStore } = require('./cred');
 
 function makeId(length = 10){
