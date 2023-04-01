@@ -38,9 +38,14 @@ document.querySelectorAll('.clickable').forEach(elem => {
 
 if ('serviceWorker' in navigator){
     window.addEventListener('load', () => {
+        //if service worker is already registered, it will be ignored
+        if (navigator.serviceWorker.controller){
+            console.log('%cService Worker already registered', 'color: orange');
+            return;
+        }
         navigator.serviceWorker
         .register('sw-fileshare-1.js?v=5')
-        .then(reg => console.log("Service Worker Registered"))
+        .then(reg => console.log("%cService Worker Registered", 'color: limegreen'))
         .catch(err => console.log(`Service Worker: Error ${err}`));
     });
 }
