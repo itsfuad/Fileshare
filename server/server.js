@@ -5,6 +5,7 @@ const cors = require('cors');
 const express = require('express');
 const { clean } = require('./cleaner');
 const { fileStore } = require('./cred');
+const os = require('os');
 
 const app = express();
 
@@ -62,4 +63,12 @@ app.get('*', (_, res) => {
 
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+    console.log(`System: ${os.type()} ${os.release()} ${os.arch()}`);
+    console.log(`CPU: ${os.cpus()[0].model}`);
+    console.log(`CPU Cores: ${os.cpus().length}`);
+    console.log(`Memory: ${Math.round(os.totalmem()/1048576)}MB`);
+    console.log(`Free Memory: ${Math.round(os.freemem()/1048576)}MB`);
+    console.log(`Uptime: ${Math.round(os.uptime()/3600)} hours`);
+    console.log(`Hostname: ${os.hostname()}`);
+    console.log(`Home Directory: ${os.homedir()}`);
 })
