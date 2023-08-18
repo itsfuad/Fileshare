@@ -49,7 +49,7 @@ app.get('/d/:id', (req, res) => {
         }else{
             size = (size/1048576).toFixed(1) + 'mb';
         }
-        res.render('download', {link: `/api/d/${filename}`, filename: filename, filesize: size, title: "Download"});
+        res.render('download', {link: `/api/d/${req.params.id}`, filename: filename, filesize: size, title: "Download"});
     }else{
         res.render('errorRes', {title: "Empty", errorCode: "404", errorMessage: "Not found", buttonText: "Home"});
     }

@@ -16,13 +16,15 @@ uploadBtn.addEventListener('click', async (evt) => {
     evt.preventDefault();
     if (fileSelector.files.length > 0){
 
-        if (fileSelector.files[0].size > 15728640){
-            console.log("File must be within 15 mb");
-            popupMessage('File must be within 15 mb');
+        const fileSizeLimit = 100 * 1024 * 1024; //100MB
+
+        if (fileSelector.files[0].size > fileSizeLimit){
+            console.log("File must be within 100 mb");
+            popupMessage('File must be within 100 mb');
             err.textContent = "";
             err.classList.remove('shake');
 
-            err.textContent = "*File must be within 15 mb*";
+            err.textContent = "*File must be within 100 mb*";
             err.classList.add('shake');
             setTimeout(()=>{
                 err.classList.remove('shake');
@@ -146,7 +148,8 @@ function resetForm(){
         document.querySelector('.chooser').classList.remove('hidden');
     }, 100);
 
-    title.textContent = "File Sharing Portal";
+    title.innerHTML = `File Sharing Portal
+    <div style="font-size: 0.8rem;">Files will be deleted after 30 minutes</div>`;
     showElem(container1);
     hideElem(container2);
     hideElem(output);

@@ -1,55 +1,70 @@
 const router = require('express').Router();
-const multer = require('multer');
 const { access } = require('fs/promises');
-const { store, fileStore } = require('./cred');
+const { store } = require('./cred');
+const { parse } = require('./../dist/formParser');
+const crypto = require('crypto');
+const fs = require('fs');
 
-function makeId(length = 10){
-    let result = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for (let i = 0; i < length; i++){
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+
+router.post('/', (req, res) => {
+  
+    const boundary = req.headers['content-type']?.split('; boundary=')[1];
+  
+    if (!boundary) {
+      res.status(400).send({ error: 'Invalid form' });
+      return;
     }
-    return result;
-}
-
-let storage = multer.diskStorage({
-    destination: (_, file, cb) => cb(null, 'uploads/'),
-    filename: (req, file, cb) => {
-        if (file.size >= 15728640){
-            cb(new Error("File size more than 15mb"), "");
-        }else{
-            const fileId = makeId(12);
-            const filename =  `${fileId}.${file.originalname.split('.').pop()}`;
-            store(fileId, { filename: filename, fileSize: undefined, createdAt: Date.now() });
-            cb(null, filename);
-        }
-    },
-});
-
-let upload = multer({ 
-    storage: storage,
-    limits: { fileSize: 15728640 },
-}).single('file'); //name field name
-
-router.post('/', async (req, res) => {
-    //validate
-    //store
+  
+    //get the file size
+    const fileSize = parseInt(req.headers['content-length']);
     
-    upload(req, res, (err) => {
-        if (err) {
-            console.log('File cannot be stored:', err.message);
-            res.send({ success: false, error: err.message });
-        } else {
-            //fileStore[req.file.filename] = {filename: req.file.filename, downloaded: 0, key: req.body.key};
-            const fileId = req.file.filename.replace(`.${req.file.filename.split('.').pop()}`, '');
-            fileStore.get(fileId).fileSize = req.file.size;
-            res.send({ success: true, file: fileId});
-            console.log('Temporary file stored.');
-        }
+    const maxFileSize = 1024 * 1024 * 100; //100MB
+  
+    if (fileSize > maxFileSize) {
+      res.status(400).send({ error: 'File size too large' });
+      return;
+    }
+    
+    const chunks = [];
+    req.on('data', (chunk) => {
+      chunks.push(chunk);
     });
+  
+    req.on('aborted', () => {
+      req.destroy();
+      console.log(`Upload aborted`);
+      //console.log(chunks);
+      chunks.length = 0;
+    })
+  
+    req.on('end', () => {
+      const data = Buffer.concat(chunks);
+  
+      const formData = parse(data, boundary);
+  
+      if (!formData) {
+        res.status(400).send({ error: 'Invalid form' });
+        return;
+      }
+  
+      const file = formData[0];
+  
+      const fileId = crypto.randomBytes(16).toString('hex');
+  
+      fs.writeFile(`uploads/${fileId}`, file.data, (err) => {
+        if (err) {
+          //console.log(err);
+          res.status(500).send({ error: 'Internal server error' });
+          return;
+        }
+        //console.log(`File ${file.filename} saved as ${fileId}. Size: ${fileSize}`);
+        store(fileId, { filename: file.filename, type: file.type, createdAt: Date.now(), fileSize: fileSize});
 
-});
+        res.status(200).send({ success: true, file: fileId });
+            //console.log(`${filename} recieved to be relayed`);
+      });
+    });
+});  
 
 router.get('/:id', (req, res) => {
     //console.log(req.params);
