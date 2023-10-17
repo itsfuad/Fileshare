@@ -15,7 +15,7 @@
     <div class="offline noSelect"></div>
     <div class="container noSelect">
         <div class="title" id="title">
-            File Sharing Portal
+            Upload file to cloud
             <div style="font-size: 0.8rem;">Files will be deleted after 30 minutes</div>
         </div>
         <form id="container1" class="active noSelect">
@@ -41,11 +41,21 @@
             </div>
             <div class="out noSelect">
                 <label for="qrcode">Scan this QR code</label>
+                <div id="fileID">File ID: <span id="fileIdNum">------</span></div>
                 <div id="qrcode" class="noSelect"></div>
                 <div id="copyLink" class="link btn noSelect clickable" data-link>Copy link</div>
                 <div class="btn noSelect clickable" id="reupload">Upload more files</div>
             </div>
         </div>
+    </div>
+    <legend>Or</legend>
+    <div class="container noSelect recieveFileContainer">
+        <!--Recieve file-->
+        <div class="title" id="title2">Recieve file</div>
+        <div class="inputField">
+            <input placeholder="File ID" type="text" name="fileID" id="recieveFileId">
+        </div>
+        <input type="button" id="download" class="clickable btn" value="Download">
     </div>
     <div class="popup-message noSelect"></div>
     <footer class="noSelect">Fuad Hasan - <a href="https://github.com/itsfuad/aiubfileshare" style="background: none;margin: 0;padding: 0;text-decoration: underline;">Source code</a></footer>

@@ -9,7 +9,7 @@ const container1 = document.getElementById('container1');
 const container2 = document.getElementById('container2');
 const title = document.getElementById('title');
 const fileDropZone = document.getElementById('drop_zone');
-
+const downloadBtn = document.getElementById('download');
 const err = document.querySelector('.err');
 
 uploadBtn.addEventListener('click', async (evt) => {
@@ -79,6 +79,7 @@ uploadBtn.addEventListener('click', async (evt) => {
                 //do stuff
                 generateQRcode(`${location.origin}/d/${file}`);
                 document.getElementById('copyLink').dataset.link = `${location.origin}/d/${file}`;
+                document.getElementById('fileIdNum').textContent = file;
                 hideElem(progressContainer);
                 showElem(output);
                 title.textContent = "File uploaded";
@@ -132,6 +133,18 @@ link.addEventListener('click', () => {
 
 document.getElementById('reupload').addEventListener("click", () => {
     resetForm();
+});
+
+downloadBtn.addEventListener('click', () => {
+    const fileId = document.getElementById('recieveFileId').value;
+    if (fileId == ''){
+        popupMessage('Enter a file id');
+        return;
+    }
+
+    //no problem with file id
+    //open new window with '/d/:id'
+    window.open(`${location.origin}/d/${fileId}`, '_blank');
 });
 
 function resetForm(){

@@ -13,6 +13,7 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -31,7 +32,9 @@ body {
   justify-content: center;
   min-height: 100vh;
   background: #111d2a;
-  overflow: hidden;
+  overflow-y: scroll;
+  padding: 10px;
+  gap: 20px;
 }
 
 .title {
@@ -50,8 +53,7 @@ body {
   font-size: 0.7rem;
 }
 .err.shake {
-  -webkit-animation: shake 300ms infinite;
-          animation: shake 300ms infinite;
+  animation: shake 300ms infinite;
 }
 
 .container {
@@ -98,16 +100,6 @@ input, #submit {
   height: 40px;
   font-size: 1rem;
 }
-input::-moz-placeholder, #submit::-moz-placeholder {
-  color: #bababa;
-  text-align: center;
-  font-family: "vt";
-}
-input:-ms-input-placeholder, #submit:-ms-input-placeholder {
-  color: #bababa;
-  text-align: center;
-  font-family: "vt";
-}
 input::placeholder, #submit::placeholder {
   color: #bababa;
   text-align: center;
@@ -147,14 +139,12 @@ a, .btn {
 }
 
 footer {
-  position: fixed;
-  bottom: 10px;
+  padding: 10px;
   font-size: 12px;
 }
 
 .blink {
-  -webkit-animation: blinking 500ms infinite;
-          animation: blinking 500ms infinite;
+  animation: blinking 500ms infinite;
 }
 
 .offline {
@@ -173,42 +163,6 @@ footer {
   visibility: visible;
   opacity: 1;
   top: 0;
-}
-
-@-webkit-keyframes shake {
-  0% {
-    transform: translateX(1px);
-  }
-  10% {
-    transform: translateX(-1px);
-  }
-  20% {
-    transform: translateX(-3px);
-  }
-  30% {
-    transform: translateX(3px);
-  }
-  40% {
-    transform: translateX(1px);
-  }
-  50% {
-    transform: translateX(-1px);
-  }
-  60% {
-    transform: translateX(-3px);
-  }
-  70% {
-    transform: translateX(3px);
-  }
-  80% {
-    transform: translateX(-1px);
-  }
-  90% {
-    transform: translateX(1px);
-  }
-  100% {
-    transform: translateX(1px);
-  }
 }
 
 @keyframes shake {
@@ -246,14 +200,6 @@ footer {
     transform: translateX(1px);
   }
 }
-@-webkit-keyframes blinking {
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes blinking {
   50% {
     opacity: 1;
@@ -267,4 +213,4 @@ footer {
     max-width: 50vw;
     width: 330px;
   }
-}/*# sourceMappingURL=common.css.map */
+}

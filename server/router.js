@@ -49,7 +49,9 @@ router.post('/', (req, res) => {
   
       const file = formData[0];
   
-      const fileId = crypto.randomBytes(16).toString('hex');
+      const fileId = crypto.randomBytes(6).toString('hex');
+
+      console.log(fileId);
   
       fs.writeFile(`uploads/${fileId}`, file.data, (err) => {
         if (err) {
