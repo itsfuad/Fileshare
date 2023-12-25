@@ -1,6 +1,7 @@
 # Filesharing PWA 
-![Filesharing PWA Logo](https://raw.githubusercontent.com/itsfuad/Fileshare/master/public/share-mini.png) 
 Filesharing PWA is a Progressive Web Application (PWA) that allows users to share files up to 15 MB in size. The files will stay available for 30 minutes after which they will be automatically deleted from the server.
+
+![Filesharing Cover](./cover.png) 
 
 ## Features
 
