@@ -71,6 +71,25 @@ body{
     transition: 200ms;
 }
 
+.filemeta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    .filename, .filesize{
+        text-overflow: ellipsis;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+
+
 .icon{
     width: 100%;
     height: 100%;
