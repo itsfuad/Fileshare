@@ -1,12 +1,9 @@
-@font-face {
-  font-family: vt;
-  src: url("now-web.woff2") format("woff2");
-}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   caret-color: #4598ff;
+  font-family: "monospace" !important;
 }
 
 .noSelect {
@@ -24,7 +21,6 @@
 }
 
 body {
-  font-family: "vt";
   color: rgb(221, 237, 252);
   display: flex;
   flex-direction: column;
@@ -39,13 +35,11 @@ body {
 
 .title {
   font-size: 1.4rem;
-  font-family: "vt";
   margin-bottom: 30px;
 }
 
 .title2 {
   font-size: 1.2rem;
-  font-family: "vt";
 }
 
 .err {
@@ -112,14 +106,14 @@ input, #submit {
   padding: 5px;
   text-align: center;
   color: white;
-  font-family: "vt";
   height: 40px;
   font-size: 1rem;
+  font-family: "monospace" !important;
 }
 input::placeholder, #submit::placeholder {
   color: #bababa;
   text-align: center;
-  font-family: "vt";
+  font-family: "monospace" !important;
 }
 
 input[type=submit], #submit, a, .btn {
@@ -127,8 +121,8 @@ input[type=submit], #submit, a, .btn {
   color: rgb(221, 237, 252);
   background: #4598ff;
   transition: 200ms;
+  font-family: "monospace" !important;
   margin: 15px 0 0;
-  font-family: "vt";
 }
 input[type=submit]:hover, #submit:hover, a:hover, .btn:hover {
   cursor: pointer;
