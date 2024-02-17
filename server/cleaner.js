@@ -4,7 +4,7 @@ const { fileStore } = require('./cred');
 function deleteFiles(){
     for (let [key, value] of fileStore){
         //30 mins
-        const time = 10 * 60 * 1000;
+        const time = 30 * 60 * 1000;
         if ( Date.now() - time >= value.createdAt){
             console.log(`Deleting ${key}`);
             rm(`uploads/${key}`);
