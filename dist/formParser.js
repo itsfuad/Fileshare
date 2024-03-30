@@ -90,7 +90,7 @@ exports.parse = parse;
 //  'multipart/form-data; boundary=----WebKitFormBoundaryvm5A9tzU1ONaGP5B',
 function getBoundary(header) {
     var items = header.split(';');
-    if (items) {
+    if (items.length > 1) {
         for (var i = 0; i < items.length; i++) {
             var item = new String(items[i]).trim();
             if (item.indexOf('boundary') >= 0) {
