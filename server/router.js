@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
   
       const formData = parse(data, boundary);
   
-      if (!formData) {
+      if (!formData.length) {
         res.status(400).send({ error: 'Invalid form' });
         return;
       }
