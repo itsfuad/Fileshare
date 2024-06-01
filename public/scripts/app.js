@@ -63,8 +63,8 @@ uploadBtn.addEventListener('click', async (evt) => {
         xhr.open('POST', `${location.origin}/api/f`, true);
         xhr.upload.onprogress = function(e) {
             if (e.lengthComputable) {
-                //document.getElementById('container1').style.display = 'none';
-                //progress
+
+
                 let progress = Math.floor((e.loaded / e.total) * 100);
                 progressDisplay.textContent = `${progress}%`;
                 document.querySelector(':root').style.setProperty('--percent', `${progress}%`);
@@ -182,12 +182,12 @@ function copyText(text){
 }
 
 function popupMessage(text){
-    //$('.popup-message').text(text);
+    
     document.querySelector('.popup-message').textContent = text;
-    //$('.popup-message').fadeIn(500);
+   
     document.querySelector('.popup-message').classList.add('active');
     setTimeout(function () {
-        //$('.popup-message').fadeOut(500);
+       
         document.querySelector('.popup-message').classList.remove('active');
     }, 1000);
 }
@@ -211,7 +211,7 @@ function readyToUpload(){
     document.querySelector('.chooser').classList.add('hidden');
     
     if (fileSelector.files.length > 0){
-        //console.log('removing dash');
+
         fileDropZone.style.outline = '0px';
     }else{
         fileDropZone.style.outline = '2px dashed #f1f1f17d';
@@ -226,16 +226,14 @@ function readyToUpload(){
     }, 40);
 }
 
-let insideTarget = undefined;
+let insideTarget;
 
 fileDropZone.addEventListener("dragover", evt => {
     insideTarget = true;
-    //console.log(insideTarget);
 });
 
 fileDropZone.addEventListener("dragleave" , evt => {
     insideTarget = false;
-    //console.log(insideTarget);
 });
 
 
@@ -244,13 +242,13 @@ let timeoutObj;
 window.addEventListener('dragover', (evt) => {
     evt.preventDefault();
     evt.stopPropagation();
-    //console.log(evt.target.classList);
+
     fileDropZone.classList.add('active');
     fileDropZone.style.outline = '2px dashed #f1f1f17d';
     fileDropZone.style.background = '#00000052';
 
     if (insideTarget){
-        //console.log("inside target");
+
         fileDropZone.style.outline = '2px dashed #4598ff';
         if (timeoutObj) {
             clearTimeout(timeoutObj);
@@ -281,7 +279,7 @@ window.addEventListener('drop', (evt) => {
     fileDropZone.classList.remove('active');
     if (insideTarget){
         if (evt.dataTransfer.files.length > 0){
-            //console.log(evt.dataTransfer.files);
+
             fileSelector.files = evt.dataTransfer.files;
             readyToUpload();
         }
@@ -290,7 +288,7 @@ window.addEventListener('drop', (evt) => {
 
 window.addEventListener('paste', (e) => {
     if (e.clipboardData) {
-        //console.log(e.clipboardData.files);
+
         if (e.clipboardData.files.length > 0){
             fileSelector.files = e.clipboardData.files;
             readyToUpload();
