@@ -1,10 +1,12 @@
-const router = require('express').Router();
-const { access } = require('fs/promises');
-const { store } = require('./cred');
-const { parse } = require('./../dist/formParser');
-const crypto = require('crypto');
-const fs = require('fs');
+import { Router } from 'express';
+import { access } from 'fs/promises';
+import { store } from './cred.js'
+import crypto from 'crypto';
+import fs from 'fs';
 
+import { parse } from '@itsfuad/multipart-form-reader';
+
+export const router = Router();
 
 router.post('/', (req, res) => {
   
@@ -33,7 +35,7 @@ router.post('/', (req, res) => {
     req.on('aborted', () => {
       req.destroy();
       console.log(`Upload aborted`);
-      //console.log(chunks);
+       
       chunks.length = 0;
     })
   
@@ -55,22 +57,22 @@ router.post('/', (req, res) => {
   
       fs.writeFile(`uploads/${fileId}`, file.data, (err) => {
         if (err) {
-          //console.log(err);
+           
           res.status(500).send({ error: 'Internal server error' });
           return;
         }
-        //console.log(`File ${file.filename} saved as ${fileId}. Size: ${fileSize}`);
+         
         store(fileId, { filename: file.filename, type: file.type, createdAt: Date.now(), fileSize: fileSize});
 
         res.status(200).send({ success: true, file: fileId });
-            //console.log(`${filename} recieved to be relayed`);
+             
       });
     });
 });  
 
 router.get('/:id', (req, res) => {
-    //console.log(req.params);
-    //console.log(fileStore);
+     
+     
     access(`uploads/${req.params.id}`)
     .then(() => {
         res.sendFile(`uploads/${req.params.id}`, { root: __dirname + '/..' });
@@ -79,5 +81,3 @@ router.get('/:id', (req, res) => {
         res.status(404).send('Not found');
     });
 });
-
-module.exports = router;

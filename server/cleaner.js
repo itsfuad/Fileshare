@@ -1,5 +1,5 @@
-const { readdir, rm } = require('fs/promises');
-const { fileStore } = require('./cred');
+import { readdir, rm } from 'fs/promises';
+import { fileStore } from './cred.js';
 
 function deleteFiles(){
     for (let [key, value] of fileStore){
@@ -14,7 +14,7 @@ function deleteFiles(){
 }
 
 
-function clean(){
+export function clean(){
     console.log('Running cleaner...');
     readdir('uploads').then(files => {
         files.map( file => {
@@ -28,5 +28,3 @@ function clean(){
     });
     setInterval(deleteFiles, 1000);
 }
-
-module.exports = { clean };

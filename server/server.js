@@ -1,17 +1,20 @@
-const path = require('path');
-const http = require('http');
-const compression = require('compression');
-const cors = require('cors');
-const express = require('express');
-const { clean } = require('./cleaner');
-const { fileStore } = require('./cred');
-const os = require('os');
+import os from 'os';
+import path from 'path';
+import http from 'http';
+import compression from 'compression';
+import cors from 'cors';
+import express from 'express';
+import { clean } from './cleaner.js';
+import { fileStore } from './cred.js';
+import { router } from './router.js';
+
+const __dirname = process.cwd();
 
 const app = express();
 
 const server = http.createServer(app);
 
-const publicPath = path.join(__dirname, '../public');
+const publicPath = path.join(__dirname, '/public');
 const PORT = process.env.PORT || 3000;
 
 clean();
@@ -19,7 +22,7 @@ clean();
 app.disable('x-powered-by');
 
 //view engine setup
-app.set('views', path.join(__dirname, '../public/views'));
+app.set('views', path.join(__dirname, '/public/views'));
 app.set('view engine', 'ejs');
 app.set('trust proxy', 1);
 
@@ -32,8 +35,8 @@ app.use(express.urlencoded({
 }));
 //app.use(apiRequestLimiter);
 
-app.use('/api/f', require('./router'));
-app.use('/api/d', require('./router'));
+app.use('/api/f', router);
+app.use('/api/d', router);
 
 app.get('/', (req, res) => {
     res.render('index', {title: "Upload"});
@@ -70,5 +73,5 @@ server.listen(PORT, () => {
     console.log(`Free Memory: ${Math.round(os.freemem()/1048576)}MB`);
     console.log(`Uptime: ${Math.round(os.uptime()/3600)} hours`);
     console.log(`Hostname: ${os.hostname()}`);
-    console.log(`Home Directory: ${os.homedir()}`);
+    console.log(`CWD: ${__dirname}`);
 })
