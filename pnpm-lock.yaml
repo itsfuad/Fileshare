@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@itsfuad/multipart-form-reader':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^1.0.4
+        version: 1.0.4
       compression:
         specifier: ^1.7.4
         version: 1.7.4
@@ -33,9 +33,9 @@ importers:
 
 packages:
 
-  '@itsfuad/multipart-form-reader@1.0.3':
-    resolution: {integrity: sha512-bUBTy3csVWdQU86fGT/4XsD2fVigOHxy4QyyOBlX4pAIF+XO6UEJn3cYsP0KANI0hhUDVV75paERhthKb06/1w==}
-    engines: {node: '>=16.13.0', npm: '>=8', pnpm: '>=3'}
+  '@itsfuad/multipart-form-reader@1.0.4':
+    resolution: {integrity: sha512-5yVL99i6XVc1Q5rHemU4MS1q/63ghmy5ETEEL/sjdUY+FDeacRPKq5GycznJ5gLPkofzk6x0JXo9D/ua6udgOQ==}
+    engines: {node: '>=14', npm: '>=8', pnpm: '>=3'}
 
   '@types/node@20.12.2':
     resolution: {integrity: sha512-zQ0NYO87hyN6Xrclcqp7f8ZbXNbRfoGWNcMvHTPQp9UUrwI0mI7XBz+cu7/W6/VClYo2g63B0cjull/srU7LgQ==}
@@ -489,7 +489,7 @@ packages:
 
 snapshots:
 
-  '@itsfuad/multipart-form-reader@1.0.3': {}
+  '@itsfuad/multipart-form-reader@1.0.4': {}
 
   '@types/node@20.12.2':
     dependencies:
