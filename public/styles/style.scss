@@ -7,12 +7,19 @@
 .progress{
     width: 100%;
     padding: 0 20px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
     gap: 10px;
+
+    display: none;
+    transform: scale(0);
+    transition: 200ms;
+    &.active{
+        display: flex;
+        transform: scale(1);
+    }
 }
 
 legend{
@@ -64,7 +71,7 @@ input[type=file]::file-selector-button {
     background-color: #4598ff;
     color: white;
     transition: 600ms;
-    font-family: 'monospace' !important;
+    font-family: 'monospace' sans-serif !important;
     height: 40px;
 }
 
@@ -91,16 +98,6 @@ input[type=file]::file-selector-button:hover {
     justify-content: center;
     align-items: center;
     width: 100%;
-    transform: scale(0);
-    transition: 200ms;
-    &.active{
-        display: flex;
-        transform: scale(1);
-    }
-}
-
-.progress{
-    display: none;
     transform: scale(0);
     transition: 200ms;
     &.active{
@@ -146,7 +143,6 @@ input[type=file]::file-selector-button:hover {
     border-radius: 15px;
     font-size: .6rem;
     transform: translateX(-50%);
-    z-index: 100;
     backdrop-filter: blur(2px);
     z-index: 1000;
     visibility: hidden;
