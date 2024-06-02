@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     caret-color: #4598ff;
-    font-family: 'monospace' sans-serif !important;
+    font-family: monospace, sans-serif !important;
     scrollbar-width: none;
 	overscroll-behavior: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -118,11 +118,11 @@ input, #submit{
     color: white;
     height: 40px;
     font-size: 1rem;
-    font-family: 'monospace' sans-serif !important;
+    font-family: monospace, sans-serif !important;
     &::placeholder{
         color: #bababa;
         text-align: center;
-        font-family: 'monospace' sans-serif !important;
+        font-family: monospace, sans-serif !important;
     }
 }
 
@@ -132,7 +132,7 @@ input[type=submit], #submit, a, .btn{
     color: rgb(221, 237, 252);
     background: #4598ff;
     transition: 200ms;
-    font-family: 'monospace' sans-serif !important;
+    font-family: monospace, sans-serif !important;
     margin: 15px 0 0;
     &:hover{
         cursor: pointer;
