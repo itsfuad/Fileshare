@@ -23,7 +23,7 @@ To develop Filesharing PWA locally, follow these steps:
 
 To use Filesharing PWA, follow these steps:
 
-1. Open the app in your browser at https://fileshareportal.onrender.com/
+1. Open the app in your browser at https://fileshare.brainbird.org/
 2. Click the "Choose File" button to select a file to upload
 3. Click the "Upload" button to upload the file
 4. Share the download link or scan the QR code with the person you want to share the file with
