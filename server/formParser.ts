@@ -165,8 +165,7 @@ export function getBoundary(header: string): string {
     const items = header.split(';');
     if (items.length > 1) {
         for (let item of items) {
-            item.trim();
-            if (item.indexOf('boundary') >= 0) {
+            if (item.trim().indexOf('boundary') >= 0) {
                 const k = item.split('=')[1].trim();
                 return k.replace(/(^["'])|(["']$)/g, '');
             }
