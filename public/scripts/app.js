@@ -264,7 +264,6 @@ window.addEventListener('dragover', (evt) => {
         fileDropZone.classList.remove('active');
         fileDropZone.style.background = 'transparent';
         if (fileSelector.files.length > 0){
-        // console.log('removing dash');
             fileDropZone.style.outline = '0px';
         }else{
             fileDropZone.style.outline = '2px dashed #f1f1f17d';

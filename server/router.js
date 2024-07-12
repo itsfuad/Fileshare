@@ -52,8 +52,6 @@ router.post('/', (req, res) => {
       const file = formData[0];
   
       const fileId = crypto.randomBytes(6).toString('hex');
-
-      console.log(fileId);
   
       fs.writeFile(`uploads/${fileId}`, file.data, (err) => {
         if (err) {
@@ -71,11 +69,9 @@ router.post('/', (req, res) => {
 });  
 
 router.get('/:id', (req, res) => {
-     
-     
     access(`uploads/${req.params.id}`)
     .then(() => {
-        res.sendFile(`uploads/${req.params.id}`, { root: __dirname + '/..' });
+        res.sendFile(req.params.id, { root: 'uploads' });
     }).catch(err => {
         console.log(`Error file access: ${err}`);
         res.status(404).send('Not found');

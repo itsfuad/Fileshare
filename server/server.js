@@ -33,7 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-//app.use(apiRequestLimiter);
 
 app.use('/api/f', router);
 app.use('/api/d', router);
