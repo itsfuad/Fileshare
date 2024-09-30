@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     //get the file size
     const fileSize = parseInt(req.headers['content-length']);
     
-    const maxFileSize = 1024 * 1024 * 100; //100MB
+    const maxFileSize = 1024 * 1024 * 50; //100MB
   
     if (fileSize > maxFileSize) {
       res.status(400).send({ error: 'File size too large' });
